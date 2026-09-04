@@ -1,8 +1,24 @@
 "use client"
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSidebarCollapsed } from '@/state'
-import { Menu } from 'lucide-react'
+import { LucideIcon, Menu } from 'lucide-react'
 import React from 'react'
+
+interface SidebarLinkProps {
+  href: string,
+  icon: LucideIcon,
+  label: string,
+  isCollapsed: boolean
+}
+
+const sidebarLink = ({
+  href,
+  icon: Icon,
+  label,
+  isCollapsed
+}: SidebarLinkProps) => {
+  
+}
 
 const Sidebar = () => {
 
@@ -21,7 +37,7 @@ const Sidebar = () => {
 
         <div>logo</div>
 
-        <h1 className='font-extrabold text-2xl'>PersianStock</h1>
+        <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl`}>PersianStock</h1>
 
         <button className='md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100' onClick={toggleSidebar}>
 
