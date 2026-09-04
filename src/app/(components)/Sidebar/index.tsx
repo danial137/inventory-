@@ -99,8 +99,8 @@ const Sidebar = () => {
         className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"
           }`}
       >
-        {/* 
-        <Image
+        
+        {/* <Image
           src="https://s3-inventorymanagement.s3.us-east-2.amazonaws.com/logo.png"
           alt="edstock-logo"
           width={27}
