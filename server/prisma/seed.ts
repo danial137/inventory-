@@ -1,7 +1,18 @@
+
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
+
 import fs from "fs";
 import path from "path";
-const prisma = new PrismaClient();
+
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+});
+
+const prisma = new PrismaClient({
+  adapter,
+});
 
 async function deleteAllData(orderedFileNames: string[]) {
   const modelNames = orderedFileNames.map((fileName) => {
@@ -11,6 +22,7 @@ async function deleteAllData(orderedFileNames: string[]) {
 
   for (const modelName of modelNames) {
     const model: any = prisma[modelName as keyof typeof prisma];
+
     if (model) {
       await model.deleteMany({});
       console.log(`Cleared data from ${modelName}`);
@@ -42,6 +54,7 @@ async function main() {
   for (const fileName of orderedFileNames) {
     const filePath = path.join(dataDirectory, fileName);
     const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
     const modelName = path.basename(fileName, path.extname(fileName));
     const model: any = prisma[modelName as keyof typeof prisma];
 
