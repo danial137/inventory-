@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Product {
   productId: string;
@@ -28,13 +28,11 @@ export interface ExpenseSummary {
   data: string;
 }
 
-export interface ExpenseByCategorySummary{
-
+export interface ExpenseByCategorySummary {
   expenseByCategorySummeryId: string;
   category: string;
   amount: string;
-  data:string
-
+  data: string;
 }
 
 export interface DashboardMetric {
@@ -50,11 +48,11 @@ export const api = createApi({
   reducerPath: "api",
   tagTypes: ["DashboardMetrics"],
   endpoints: (build) => ({
-    getdashboardMetrics: build.query<DashboardMetric, void>({
+    getDashboardMetrics: build.query<DashboardMetric, void>({
       query: () => "/dashboard",
       providesTags: ["DashboardMetrics"],
     }),
   }),
 });
 
-export const {} = api;
+export const { useGetDashboardMetricsQuery } = api;
