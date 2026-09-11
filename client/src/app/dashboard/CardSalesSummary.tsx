@@ -13,7 +13,6 @@ import {
 
 const CardSalesSummary = () => {
     const { data, isLoading, isError } = useGetDashboardMetricsQuery();
-
     const salesData = data?.saleSummary || [];
 
     console.log("FULL API DATA:", data);
@@ -22,24 +21,16 @@ const CardSalesSummary = () => {
     const [timeframe, setTimeframe] = useState("weekly");
 
     const totalValueSum =
-        salesData.reduce(
-            (acc, curr) => acc + Number(curr.totalValue || 0),
-            0
-        ) || 0;
+        salesData.reduce((acc, curr) => acc + Number(curr.totalValue || 0), 0) || 0;
 
     const averageChangePercentage =
         salesData.length > 0
-            ? salesData.reduce(
-                (acc, curr) => acc + Number(curr.changePercentage || 0),
-                0
-            ) / salesData.length
+            ? salesData.reduce((acc, curr) => acc + Number(curr.changePercentage || 0), 0) /
+            salesData.length
             : 0;
 
     const highestValueData = salesData.reduce(
-        (acc, curr) =>
-            Number(acc?.totalValue || 0) > Number(curr?.totalValue || 0)
-                ? acc
-                : curr,
+        (acc, curr) => (Number(acc?.totalValue || 0) > Number(curr?.totalValue || 0) ? acc : curr),
         salesData[0]
     );
 
@@ -52,28 +43,23 @@ const CardSalesSummary = () => {
         : "N/A";
 
     if (isError) {
-        return <div className="m-5">Failed to fetch data</div>;
+        return (
+            <div className="m-5 text-gray-900 dark:text-white">
+                Failed to fetch data
+            </div>
+        );
     }
 
-    const testData = [
-        { date: "2026-09-01", totalValue: 1500000 },
-        { date: "2026-09-02", totalValue: 2500000 },
-        { date: "2026-09-03", totalValue: 1800000 },
-        { date: "2026-09-04", totalValue: 3200000 },
-    ];
-
     return (
-        <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl flex flex-col justify-between">
+        <div className="row-span-3 xl:row-span-6 bg-white dark:bg-gray-800 shadow-md rounded-2xl flex flex-col justify-between text-gray-900 dark:text-white">
             {isLoading ? (
                 <div className="m-5">Loading...</div>
             ) : (
                 <>
                     {/* HEADER */}
                     <div>
-                        <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
-                            Sales Summary
-                        </h2>
-                        <hr />
+                        <h2 className="text-lg font-semibold mb-2 px-7 pt-5">Sales Summary</h2>
+                        <hr className="border-gray-200 dark:border-gray-700" />
                     </div>
 
                     {/* BODY */}
@@ -81,11 +67,10 @@ const CardSalesSummary = () => {
                         {/* BODY HEADER */}
                         <div className="flex justify-between items-center mb-6 px-7 mt-5">
                             <div className="text-lg font-medium">
-                                <p className="text-xs text-gray-400">Value</p>
+                                <p className="text-xs text-gray-400 dark:text-gray-500">Value</p>
 
                                 <span className="text-2xl font-extrabold">
-                                    $
-                                    {(totalValueSum / 1000000).toLocaleString("en-US", {
+                                    ${(totalValueSum / 1000000).toLocaleString("en-US", {
                                         maximumFractionDigits: 2,
                                     })}
                                     m
@@ -98,7 +83,7 @@ const CardSalesSummary = () => {
                             </div>
 
                             <select
-                                className="shadow-sm border border-gray-300 bg-white p-2 rounded"
+                                className="shadow-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white p-2 rounded"
                                 value={timeframe}
                                 onChange={(e) => setTimeframe(e.target.value)}
                             >
@@ -113,17 +98,9 @@ const CardSalesSummary = () => {
                             <ResponsiveContainer width="100%" height={350}>
                                 <BarChart
                                     data={salesData}
-                                    margin={{
-                                        top: 0,
-                                        right: 0,
-                                        left: -25,
-                                        bottom: 0,
-                                    }}
+                                    margin={{ top: 0, right: 0, left: -25, bottom: 0 }}
                                 >
-                                    <CartesianGrid
-                                        strokeDasharray="3 3"
-                                        vertical={false}
-                                    />
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
                                     <XAxis
                                         dataKey="date"
@@ -134,13 +111,8 @@ const CardSalesSummary = () => {
                                     />
 
                                     <YAxis
-                                        tickFormatter={(value) =>
-                                            `$${(Number(value) / 1000000).toFixed(0)}m`
-                                        }
-                                        tick={{
-                                            fontSize: 12,
-                                            dx: -1,
-                                        }}
+                                        tickFormatter={(value) => `$${(Number(value) / 1000000).toFixed(0)}m`}
+                                        tick={{ fontSize: 12, dx: -1 }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
@@ -153,12 +125,7 @@ const CardSalesSummary = () => {
                                         }
                                     />
 
-                                    <Bar
-                                        dataKey="totalValue"
-                                        fill="#3182ce"
-                                        barSize={10}
-                                        radius={[10, 10, 0, 0]}
-                                    />
+                                    <Bar dataKey="totalValue" fill="#3182ce" barSize={10} radius={[10, 10, 0, 0]} />
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
@@ -166,14 +133,16 @@ const CardSalesSummary = () => {
 
                     {/* FOOTER */}
                     <div>
-                        <hr />
+                        <hr className="border-gray-200 dark:border-gray-700" />
 
-                        <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4">
+                        <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4 text-gray-700 dark:text-gray-300">
                             <p>{salesData.length} days</p>
 
                             <p className="text-sm">
                                 Highest Sales Date:{" "}
-                                <span className="font-bold">{highestValueDate}</span>
+                                <span className="font-bold text-gray-900 dark:text-white">
+                                    {highestValueDate}
+                                </span>
                             </p>
                         </div>
                     </div>
