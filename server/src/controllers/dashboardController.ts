@@ -26,7 +26,7 @@ export const getDashboardMetrics = async (
       },
     });
 
-    const seleSummary = await prisma.salesSummary.findMany({
+    const saleSummary = await prisma.salesSummary.findMany({
       take: 5,
       orderBy: {
         date: "desc",
@@ -63,7 +63,7 @@ export const getDashboardMetrics = async (
 
     res.json({
       popularProducts,
-      seleSummary,
+      saleSummary,
       purchaseSummary,
       expenseSummary,
       expenseByCategory,
