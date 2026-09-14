@@ -32,12 +32,21 @@ const Inventory = () => {
 
     }
 
-    return <div className="flex flex-col ">
+    return (
+        <div className="flex flex-col">
+            <Header name="Inventory" />
 
-        <Header name="Inventory" />
-        <DataGrid rows={products} columns={column} getRowId={(row) => row.productId} checkboxSelection />
-
-    </div>
+            <div className="mt-5">
+                <DataGrid
+                    rows={products}
+                    columns={column}
+                    getRowId={(row) => row.productId}
+                    checkboxSelection
+                    className="bg-white shadow rounded-lg border border-gray-200 text-gray-500!"
+                />
+            </div>
+        </div>
+    );
 
 
 }
