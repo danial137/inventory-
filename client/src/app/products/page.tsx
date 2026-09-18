@@ -28,8 +28,8 @@ const Products = () => {
         {/* search bar */}
         <div className='mb-6'>
             <div className='flex itesm-center border-2 border-gray-200 rounded lg:border-none'>
-                <SearchIcon className='w-5 h-5 text-gray-500 m-2' />
-                <input className='w-full lg:w-fit py-2 px-4 rounded bg-white' placeholder='Search Products...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <SearchIcon className='w-5 h-5  m-2' />
+                <input className='w-full lg:w-fit py-2 px-4 rounded' placeholder='Search Products...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
         </div>
 
@@ -39,9 +39,9 @@ const Products = () => {
 
             <Header name='Products' />
 
-            <button className='flex items-center bg-blue hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 rounded' onClick={() => setIsModalOpen(true)}>
+            <button className='flex items-center bg-blue hover:bg-blue-700 font-bold py-2 px-4 rounded' onClick={() => setIsModalOpen(true)}>
 
-                <PlusCircle className='w-5 h-5 mr-2 text-gray-200!' />
+                <PlusCircle className='w-5 h-5 mr-2' />
 
 
             </button>
