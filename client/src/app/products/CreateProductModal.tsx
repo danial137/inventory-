@@ -1,5 +1,5 @@
 "use client"
-import React, { FormEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { v4 } from 'uuid'
 import Header from '../(components)/Header';
 
@@ -37,7 +37,25 @@ const CreateProductModal = ({ isOpen, onClose, onCreate }: CreateProductModalPro
 
     }
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+        const { name, value } = e.target;
+
+        setFormData({
+            ...formData,
+            [name]:
+                name === "price" || name === "stockQuantity" || name === "rating"
+                    ? parseFloat(value)
+                    : value
+        })
+
+    }
+
     if (!isOpen) return null
+
+    const labelCssStyle = "block text-sm font-medium text-gray-700";
+    const inputCssStyle = "block w-full mb-2 p-2 border-gray-500 border-2 rounded-md"
+
     return (
         <div className='fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20'>
 
@@ -47,9 +65,10 @@ const CreateProductModal = ({ isOpen, onClose, onCreate }: CreateProductModalPro
 
 
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="productname" className='block text-sm font-medium text-gray-700'>
+                    <label htmlFor="productname" className={labelCssStyle}>
                         Product Name
                     </label>
+                    <input type='text' name='name' onChange={handleChange} value={formData.name} className={inputCssStyle} required />
                 </form>
 
 
