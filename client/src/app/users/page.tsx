@@ -15,13 +15,13 @@ const column: GridColDef[] = [
 
 const Users = () => {
 
-    const { data: products, isError, isLoading } = useGetUsersQuery();
+    const { data: users, isError, isLoading } = useGetUsersQuery();
 
     if (isLoading) {
         return <div className="py-4">Loading... </div>
     }
 
-    if (isError || !products) {
+    if (isError || !users) {
 
         return (
             <div className="text-center text-red-500 py-4">
@@ -37,9 +37,9 @@ const Users = () => {
 
             <div className="mt-5">
                 <DataGrid
-                    rows={products}
+                    rows={users}
                     columns={column}
-                    getRowId={(row) => row.productId}
+                    getRowId={(row) => row.userId}
                     checkboxSelection
                     className="bg-white shadow rounded-lg border border-gray-200 text-gray-500!"
                 />
