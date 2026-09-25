@@ -16,7 +16,8 @@ const Expenses = () => {
     const expenses = useMemo(() => expensesData ?? [], [expensesData])
 
     const classNames = {
-        label: "block text-sm font-medium"
+        label: "block text-sm font-medium text-gray-700",
+        selectInput: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 text-white bg-gray-300"
     }
 
     if (isLoading) {
@@ -64,8 +65,13 @@ const Expenses = () => {
 
                             </label>
 
-                            <select id="category">
+                            <select id="category" name="category" className={classNames.selectInput} defaultValue="All" onChange={(e) => setSelectedCategory(e.target.value)}>
 
+                                <option value="">All</option>
+                                <option value="">Office</option>
+                                <option value="">Prefessional</option>
+                                <option value="">All</option>
+                                <option value="">All</option>
                             </select>
                         </div>
 
