@@ -9,6 +9,7 @@ import morgan from "morgan";
 // routes
 import dashboardRoutes from "./routes/dashboardRoutes";
 import productRoutes from "./routes/productRoutes";
+import userRouter from "./routes/userRouter";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 
 app.use("/dashboard", dashboardRoutes);
 app.use("/products", productRoutes);
+app.use("/users", userRouter);
 
 const port = process.env.PORT || 3001;
 
