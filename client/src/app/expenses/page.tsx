@@ -17,7 +17,7 @@ const Expenses = () => {
 
     const classNames = {
         label: "block text-sm font-medium text-gray-700",
-        selectInput: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 text-white bg-gray-300"
+        selectInput: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 text-white bg-gray-500"
     }
 
     if (isLoading) {
