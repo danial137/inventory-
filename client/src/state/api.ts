@@ -39,7 +39,7 @@ export interface ExpenseByCategorySummary {
   expenseByCategorySummeryId: string;
   category: string;
   amount: string;
-  data: string;
+  date: string;
 }
 
 export interface DashboardMetric {
