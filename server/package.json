@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "tsx prisma/seed.ts",
-    "build": "rimraf dist && npx tsc",
-    "start": "npm run build && node dist/index.js",
-    "dev": "nodemon --exec tsx src/index.ts"
-  },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "seed": "tsx prisma/seed.ts",
+  "build": "rimraf dist && npx prisma generate && npx tsc",
+  "start": "npm run build && node dist/index.js",
+  "dev": "nodemon --exec tsx src/index.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
